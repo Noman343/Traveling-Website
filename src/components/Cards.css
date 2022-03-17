@@ -1,0 +1,45 @@
+.cardItem {
+  display: flex;
+  flex: 1;
+}
+.cardBody {
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(24, 39, 66, 0.17);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cardPic {
+  position: relative;
+  width: 100%;
+  padding-top: 55%;
+  overflow: hidden;
+}
+.cardPic::after {
+  content: attr(data-category);
+  position: absolute;
+  bottom: 3px;
+  padding: 6px;
+  max-width: calc((100%) - 60px);
+  font-size: 14px;
+  color: #fff;
+  background-color: rgb(248, 191, 45);
+  box-sizing: border-box;
+}
+.cardImg {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-structure{
+  transition: 0.4s ;
+}
+.card-structure:hover{
+  transform:rotate(-10deg);
+}
+
+@media (min-width: 1024px) {
+  .cards__items {
+    display: flex;
+  }
+}

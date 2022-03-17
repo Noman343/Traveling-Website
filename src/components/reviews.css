@@ -1,0 +1,19 @@
+.reviewCon{
+    background:linear-gradient( rgb(42, 167, 240), rgb(230, 166, 48));
+    
+}
+.reviewInputBox{
+    border-radius: 5px;
+    border: none;
+}
+.added-cont{
+    width: 100%;
+}
+.added-card{
+    /* background-image:linear-gradient(to right, lightgreen , grey) ; */
+    background:linear-gradient( rgb(42, 167, 240), rgb(230, 166, 48));
+
+    /* background-color: aqua; */
+    max-width: 50%;
+    margin: 1rem auto;
+}

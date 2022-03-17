@@ -1,0 +1,36 @@
+.navbar {
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbar-logo {
+  color: #fff;
+  margin-left: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+}
+.navbar-logo:hover{
+  color: dodgerblue;
+}
+.bi-globe{
+  margin-left: 0.3rem;
+}
+.nav-item {
+  height: 60px;
+}
+.nav-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+  margin-left: 30px;
+}
+
+.nav-link:hover {
+  border-bottom: 3px solid #fff;
+  transition: all 0.2s ease-out;
+}
