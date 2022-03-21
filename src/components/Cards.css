@@ -35,11 +35,6 @@
   transition: 0.4s ;
 }
 .card-structure:hover{
-  transform:rotate(-10deg);
+  transform:rotate(-5deg);
 }
 
-@media (min-width: 1024px) {
-  .cards__items {
-    display: flex;
-  }
-}

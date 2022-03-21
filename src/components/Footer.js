@@ -6,7 +6,7 @@ function Footer() {
     <div className="container-fluid bg-dark">
       <footer className="text-center text-white bg-dark">
         <div className="container p-4">
-          <section className="">
+          <section>
             <div className="row d-flex justify-content-center">
               <div className="col-lg-6">
                 <div className="ratio ratio-16x9 video">

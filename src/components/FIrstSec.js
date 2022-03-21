@@ -2,7 +2,7 @@ import React from "react";
 import "./firstSec.css";
 import { Link } from "react-router-dom";
 
-function HeroSection() {
+function FirstSec() {
   return (
     <div className="hero-container">
       <h1 className="text-center text-white display-1">THE WORLD AWAITS</h1>
@@ -31,4 +31,4 @@ function HeroSection() {
   );
 }
 
-export default HeroSection;
+export default FirstSec;
