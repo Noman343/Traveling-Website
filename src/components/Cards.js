@@ -7,34 +7,24 @@ function Cards() {
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState(dataList);
 
-  // exclude column list from filter
-  const excludeColumns = ["id", "color"];
+  const filterData = (e) => {
+    let find = e.target.value;
+    setSearchText(find);
+    const newFilter = data.filter((item) => {
+      return item.text.toLowerCase().includes(find.toLowerCase());
+    });
 
-  // handle change event of search input
-  const handleChange = (value) => {
-    setSearchText(value);
-    filterData(value);
-  };
-
-  // filter records by search text
-  const filterData = (value) => {
-    const lowercasedValue = value.toLowerCase().trim();
-    if (lowercasedValue === "") setData(dataList);
-    else {
-      const filteredData = data.filter((item) => {
-        return Object.keys(item).some((key) =>
-          excludeColumns.includes(key)
-            ? false
-            : item[key].toString().toLowerCase().includes(lowercasedValue)
-        );
-      });
-      setData(filteredData);
+    if (find === "") {
+      setData(dataList);
+    } else {
+      setData(newFilter);
     }
   };
 
   var value = data.map((item) => {
     return <CardItem key={item.id} item={item} />;
   });
+
   return (
     <div className="p-4 bg-white">
       <h1 className="text-center m-3">Most Visited Places..!</h1>
@@ -43,11 +33,13 @@ function Cards() {
           type="text"
           placeholder="Type to search..."
           value={searchText}
-          onChange={(e) => handleChange(e.target.value)}
+          onChange={filterData}
         />
       </div>
       <div className="clearboth"></div>
-      {data.length === 0 && <span>No records found to display!</span>}
+      <div className="text-center w-100 text-muted">
+        {data.length === 0 && <span>No records found to display!</span>}
+      </div>
       <div className="row m-2">{value}</div>
     </div>
   );
