@@ -36,5 +36,11 @@
 }
 .card-structure:hover{
   transform:rotate(-5deg);
+  padding: 20px;
+}
+@media (max-width : 800px){
+  .card-structure{
+    margin: 1rem 0;
+  }
 }
 

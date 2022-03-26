@@ -10,6 +10,20 @@
 }
 .added-card{
     background:linear-gradient( rgb(42, 167, 240), rgb(230, 166, 48));
-    max-width: 50%;
+    width: 60%;
     margin: 1rem auto;
+}
+@media (max-width :1100px){
+    .added-card{
+        background:linear-gradient( rgb(42, 167, 240), rgb(230, 166, 48));
+        width: 70%;
+        margin: 1rem auto;
+    }
+}
+@media (max-width :900px){
+    .added-card{
+        background:linear-gradient( rgb(42, 167, 240), rgb(230, 166, 48));
+        width: 100%;
+        margin: 1rem auto;
+    }
 }

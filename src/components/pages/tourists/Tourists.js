@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import Person from "./person";
 function Tourists() {
   const [users, setUsers] = useState([]);
 
   let userlist = [];
-  axios
+  useEffect(()=>{
+    axios
     .get("https://api.github.com/users")
     .then((response) => {
       userlist = response.data;
       setUsers(userlist);
+      console.log(userlist)
     }, [])
     .catch((error) => {
       console.log(error);
     });
+  },[])
+
 
   var userComponent = users.map((user) => {
     return <Person key={user.id} user={user} />;

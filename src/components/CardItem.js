@@ -4,7 +4,7 @@ import './Cards.css';
 function CardItem(props) {
   return (
     <>
-      <div className='col-sm-12 col-md-4 col-lg-4 p-2 card-structure '>
+      <div className='col-sm-12 col-md-4 col-lg-4 p-2 card-structure'>
         <div className='cardBody shadoe-lg'>
           <div className='cardPic' data-category={props.item.label}>
             <img
@@ -13,8 +13,8 @@ function CardItem(props) {
               alt="Card Logo"
             />
           </div>
-          <div className='p-3'>
-            <h5 className='text-dark h5'>{props.item.text}</h5>
+          <div className='p-3 '>
+            <h5 className='text-dark h5 '>{props.item.text}</h5>
           </div>
         </div>
       </div>
