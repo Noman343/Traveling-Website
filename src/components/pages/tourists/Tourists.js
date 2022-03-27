@@ -4,15 +4,16 @@ import Person from "./person";
 function Tourists() {
   const [users, setUsers] = useState([]);
 
-  let userlist = [];
+  
   useEffect(()=>{
+    let userlist = [];
     axios
     .get("https://api.github.com/users")
     .then((response) => {
       userlist = response.data;
       setUsers(userlist);
       console.log(userlist)
-    })
+    },[])
     .catch((error) => {
       console.log(error);
     });
