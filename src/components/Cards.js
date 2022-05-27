@@ -28,13 +28,21 @@ function Cards() {
   return (
     <div className="p-4 bg-white">
       <h1 className="text-center m-3">Most Visited Places..!</h1>
-      <div className="text-center m-3 w-100">
-        <input
-          type="text"
-          placeholder="Type to search..."
-          value={searchText}
-          onChange={filterData}
-        />
+
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Type to search..."
+              value={searchText}
+              onChange={filterData}
+            />
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4"></div>
       </div>
       <div className="clearboth"></div>
       <div className="text-center w-100 text-muted">

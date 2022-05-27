@@ -75,7 +75,7 @@ export default function Reviews() {
               onChange={(e) => setInput(e.target.value)}
             />
             {toggle ? (
-              <button className="btn btn-sm bg-primary" onClick={addItem}>Add</button>
+              <button className="btn btn-sm btn-outline-light" onClick={addItem}>Add</button>
             ) : (
               <i className="fas fa-edit btn" onClick={addItem}></i>
             )}
