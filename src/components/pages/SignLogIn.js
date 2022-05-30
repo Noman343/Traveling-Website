@@ -111,7 +111,7 @@ function SignLogIn() {
                               required
                               onFocus={(e) => (e.target.value = "")}
                             />
-                            <i className="input-icon bi bi-envelope"></i>
+                            <i className="input-icon bi bi-person-circle"></i>
                           </div>
                           <div className="form-group mt-2">
                             <input
