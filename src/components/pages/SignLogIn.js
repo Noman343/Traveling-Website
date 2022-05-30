@@ -31,9 +31,9 @@ function SignLogIn() {
           password: pwd,
         })
         .then((res) => {
-          if (res.data.error == "wrong password") {
+          if (res.data.error === "wrong password") {
             alert("Incorrect Password");
-          } else if (res.data.msg == "Incorrect Email") {
+          } else if (res.data.msg === "Incorrect Email") {
             alert("Incorrect Email");
           } else {
             console.log(res.data);
