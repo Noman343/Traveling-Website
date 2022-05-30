@@ -1,18 +1,78 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./SignLogIn.css";
+import axios from "axios";
 
 function SignLogIn() {
+  const { setAuth } = useAuth();
 
-  const [email,setEmail] = useState("")
-  const [pwd,setPwd] = useState("")
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-  var submitfunc = () =>{
-    var user = {
-      email,
-      pwd
+  // for Login
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  // for Sign up
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async (e) => {
+    e.preventDefault();
+    if (user === "" || pwd === "") {
+      alert("Please enter email and password");
+    } else {
+      axios
+        .post("http://localhost:5000/login", {
+          name: user,
+          password: pwd,
+        })
+        .then((res) => {
+          if (res.data.error == "wrong password") {
+            alert("Incorrect Password");
+          } else if (res.data.msg == "Incorrect Email") {
+            alert("Incorrect Email");
+          } else {
+            console.log(res.data);
+            setAuth({ user, pwd });
+            navigate(from);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Internal Server Error Please Try Again later");
+        });
     }
-    sessionStorage.setItem(user.email,user.pwd);
-  }
+  };
+
+  const signup = async (e) => {
+    e.preventDefault();
+    if (username === "" || email === "" || password === "") {
+      alert("Please complete the Fields");
+    } else {
+      axios
+        .post("http://localhost:5000/signup", {
+          name: username,
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res.data);
+          alert("Account Created Successfully now you can Log In.");
+          setUsername("");
+          setEmail("");
+          setPassword("");
+          navigate(from);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Internal Server Error Please Try Again later");
+        });
+    }
+  };
 
   return (
     <div className="container">
@@ -39,16 +99,19 @@ function SignLogIn() {
                         <div className="section text-center">
                           <h4 className="mb-4 pb-3 text-white">Log In</h4>
                           <div className="form-group">
-                           
                             <input
-                              type="email"
+                              type="text"
                               className="form-style"
-                              placeholder="Your Email"
+                              placeholder="User Name"
                               autoComplete="on"
-                              onChange={(e)=>{setEmail(e.target.value)}}
+                              onChange={(e) => {
+                                setUser(e.target.value);
+                              }}
+                              value={user}
+                              required
                               onFocus={(e) => (e.target.value = "")}
                             />
-                             <i className="input-icon bi bi-envelope"></i>
+                            <i className="input-icon bi bi-envelope"></i>
                           </div>
                           <div className="form-group mt-2">
                             <input
@@ -56,14 +119,21 @@ function SignLogIn() {
                               className="form-style"
                               placeholder="Your Password"
                               autoComplete="off"
-                              onChange={(e)=>{setPwd(e.target.value)}}
+                              onChange={(e) => {
+                                setPwd(e.target.value);
+                              }}
+                              value={pwd}
+                              required
                               onFocus={(e) => (e.target.value = "")}
                             />
                             <i className="input-icon bi bi-shield-lock"></i>
                           </div>
 
-                          <button className="btn btn-md btn-outline-light mt-3" onClick={submitfunc}>
-                            Submit
+                          <button
+                            className="btn btn-md btn-outline-light mt-3"
+                            onClick={login}
+                          >
+                            Log In
                           </button>
                           <p className="mb-0 mt-5 text-center">
                             <a href="#0" className="link">
@@ -81,8 +151,14 @@ function SignLogIn() {
                             <input
                               type="text"
                               className="form-style"
-                              placeholder="Your Full Name"
+                              placeholder="Your Name"
                               autoComplete="on"
+                              onChange={(e) => {
+                                setUsername(e.target.value);
+                              }}
+                              value={username}
+                              required
+                              onFocus={(e) => (e.target.value = "")}
                             />
                             <i className="input-icon bi bi-person-circle"></i>
                           </div>
@@ -92,7 +168,11 @@ function SignLogIn() {
                               className="form-style"
                               placeholder="Your Email"
                               autoComplete="on"
-                              onChange={(e)=>{setEmail(e.target.value)}}
+                              onChange={(e) => {
+                                setEmail(e.target.value);
+                              }}
+                              value={email}
+                              required
                               onFocus={(e) => (e.target.value = "")}
                             />
                             <i className="input-icon bi bi-envelope"></i>
@@ -104,14 +184,21 @@ function SignLogIn() {
                               className="form-style"
                               placeholder="Your Password"
                               autoComplete="off"
-                              onChange={(e)=>{setPwd(e.target.value)}}
+                              onChange={(e) => {
+                                setPassword(e.target.value);
+                              }}
+                              value={password}
+                              required
                               onFocus={(e) => (e.target.value = "")}
                             />
                             <i className="input-icon bi bi-shield-lock"></i>
                           </div>
 
-                          <button className="btn btn-md btn-outline-light mt-3"  onClick={submitfunc}>
-                            Submit
+                          <button
+                            className="btn btn-md btn-outline-light mt-3"
+                            onClick={signup}
+                          >
+                            Sign Up
                           </button>
                         </div>
                       </div>
