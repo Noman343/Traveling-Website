@@ -26,7 +26,7 @@ function SignLogIn() {
       alert("Please enter email and password");
     } else {
       axios
-        .post("http://localhost:5000/login", {
+        .post("https://secret-badlands-53755.herokuapp.com/login", {
           name: user,
           password: pwd,
         })
@@ -53,8 +53,8 @@ function SignLogIn() {
     if (username === "" || email === "" || password === "") {
       alert("Please complete the Fields");
     } else {
-      axios
-        .post("http://localhost:5000/signup", {
+      axios 
+        .post("https://secret-badlands-53755.herokuapp.com/signup", {
           name: username,
           email: email,
           password: password,
