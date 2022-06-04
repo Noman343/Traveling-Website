@@ -12,7 +12,6 @@ function Tourists() {
     .then((response) => {
       userlist = response.data;
       setUsers(userlist);
-      console.log(userlist)
     },[])
     .catch((error) => {
       console.log(error);

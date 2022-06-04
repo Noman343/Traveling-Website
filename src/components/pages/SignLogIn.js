@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SignLogIn.css";
+import Loader from "../Loader";
 import axios from "axios";
 
 function SignLogIn() {
@@ -14,7 +15,7 @@ function SignLogIn() {
   // for Login
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
-
+  const [loggedInState, setLoggedInState] = useState();
   // for Sign up
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -22,11 +23,13 @@ function SignLogIn() {
 
   const login = async (e) => {
     e.preventDefault();
+    setLoggedInState("logging in");
     if (user === "" || pwd === "") {
       alert("Please enter email and password");
     } else {
       axios
         .post("https://secret-badlands-53755.herokuapp.com/login", {
+        // .post("http://localhost:5000/login", {
           name: user,
           password: pwd,
         })
@@ -36,14 +39,16 @@ function SignLogIn() {
           } else if (res.data.msg === "Incorrect Email") {
             alert("Incorrect Email");
           } else {
-            console.log(res.data);
+            console.log(res);
             setAuth({ user, pwd });
             navigate(from);
           }
+          setLoggedInState("");
         })
         .catch((err) => {
           console.log(err);
           alert("Internal Server Error Please Try Again later");
+          setLoggedInState("");
         });
     }
   };
@@ -53,8 +58,9 @@ function SignLogIn() {
     if (username === "" || email === "" || password === "") {
       alert("Please complete the Fields");
     } else {
-      axios 
+      axios
         .post("https://secret-badlands-53755.herokuapp.com/signup", {
+        // .post("http://localhost:5000/signup", {
           name: username,
           email: email,
           password: password,
@@ -128,13 +134,17 @@ function SignLogIn() {
                             />
                             <i className="input-icon bi bi-shield-lock"></i>
                           </div>
+                          {loggedInState === "logging in" ? (
+                            <Loader />
+                          ) : (
+                            <button
+                              className="btn btn-md btn-outline-light mt-3"
+                              onClick={login}
+                            >
+                              Log In
+                            </button>
+                          )}
 
-                          <button
-                            className="btn btn-md btn-outline-light mt-3"
-                            onClick={login}
-                          >
-                            Log In
-                          </button>
                           <p className="mb-0 mt-5 text-center">
                             <a href="#0" className="link">
                               Forgot your password?
