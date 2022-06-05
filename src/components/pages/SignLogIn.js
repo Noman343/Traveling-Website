@@ -28,13 +28,13 @@ function SignLogIn() {
       alert("Please enter email and password");
     } else {
       axios
-        .post("https://secret-badlands-53755.herokuapp.com/login", {
-        // .post("http://localhost:5000/login", {
+        // .post("https://secret-badlands-53755.herokuapp.com/login", {
+        .post("http://localhost:5000/login", {
           name: user,
           password: pwd,
         })
         .then((res) => {
-          if (res.data.error === "wrong password") {
+          if (res.data.msg === "wrong password") {
             alert("Incorrect Password");
           } else if (res.data.msg === "Incorrect Email") {
             alert("Incorrect Email");
@@ -55,27 +55,30 @@ function SignLogIn() {
 
   const signup = async (e) => {
     e.preventDefault();
+    setLoggedInState("logging in");
     if (username === "" || email === "" || password === "") {
       alert("Please complete the Fields");
     } else {
       axios
-        .post("https://secret-badlands-53755.herokuapp.com/signup", {
-        // .post("http://localhost:5000/signup", {
+        // .post("https://secret-badlands-53755.herokuapp.com/signup", {
+        .post("http://localhost:5000/signup", {
           name: username,
           email: email,
           password: password,
         })
         .then((res) => {
-          console.log(res.data);
           alert("Account Created Successfully now you can Log In.");
+          console.log(res.data);
           setUsername("");
           setEmail("");
           setPassword("");
           navigate(from);
+          setLoggedInState("");
         })
         .catch((err) => {
           console.log(err);
           alert("Internal Server Error Please Try Again later");
+          setLoggedInState("");
         });
     }
   };
@@ -203,13 +206,16 @@ function SignLogIn() {
                             />
                             <i className="input-icon bi bi-shield-lock"></i>
                           </div>
-
-                          <button
-                            className="btn btn-md btn-outline-light mt-3"
-                            onClick={signup}
-                          >
-                            Sign Up
-                          </button>
+                          {loggedInState === "logging in" ? (
+                            <Loader />
+                          ) : (
+                            <button
+                              className="btn btn-md btn-outline-light mt-3"
+                              onClick={signup}
+                            >
+                              Sign Up
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
