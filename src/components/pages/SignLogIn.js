@@ -28,9 +28,9 @@ function SignLogIn() {
       alert("Please enter email and password");
     } else {
       axios
-        // .post("https://secret-badlands-53755.herokuapp.com/login", {
-        .post("http://localhost:5000/login", {
-          name: user,
+        .post("https://secret-badlands-53755.herokuapp.com/login", {
+        // .post("http://localhost:5000/login", {
+          email: user,
           password: pwd,
         })
         .then((res) => {
@@ -60,20 +60,27 @@ function SignLogIn() {
       alert("Please complete the Fields");
     } else {
       axios
-        // .post("https://secret-badlands-53755.herokuapp.com/signup", {
-        .post("http://localhost:5000/signup", {
+        .post("https://secret-badlands-53755.herokuapp.com/signup", {
+        // .post("http://localhost:5000/signup", {
           name: username,
           email: email,
           password: password,
         })
         .then((res) => {
-          alert("Account Created Successfully now you can Log In.");
-          console.log(res.data);
-          setUsername("");
-          setEmail("");
-          setPassword("");
-          navigate(from);
-          setLoggedInState("");
+          if (res.data.msg === "No matching documents"){
+            alert("Account Created Successfully now you can Log In.");
+            console.log(res.data);
+            setUsername("");
+            setEmail("");
+            setPassword("");
+            navigate(from);
+            setLoggedInState("");
+          } else if(res.data.msg === "please login"){
+            alert("You are already Registered. Please Log In.");
+            setLoggedInState("");
+            navigate(from);
+          }
+  
         })
         .catch((err) => {
           console.log(err);
@@ -109,9 +116,9 @@ function SignLogIn() {
                           <h4 className="mb-4 pb-3 text-white">Log In</h4>
                           <div className="form-group">
                             <input
-                              type="text"
+                              type="email"
                               className="form-style"
-                              placeholder="User Name"
+                              placeholder="Your Email"
                               autoComplete="on"
                               onChange={(e) => {
                                 setUser(e.target.value);
@@ -120,7 +127,7 @@ function SignLogIn() {
                               required
                               onFocus={(e) => (e.target.value = "")}
                             />
-                            <i className="input-icon bi bi-person-circle"></i>
+                            <i className="input-icon bi bi-envelope"></i>
                           </div>
                           <div className="form-group mt-2">
                             <input
