@@ -2,7 +2,6 @@ import React from "react";
 import './trailer.css'
 
 function Trailer() {
-  console.log("render trailer")
   return (
     <>
       <div className="hero-container2">

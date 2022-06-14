@@ -39,7 +39,6 @@ function SignLogIn() {
           } else if (res.data.msg === "Incorrect Email") {
             alert("Incorrect Email");
           } else {
-            console.log(res);
             setAuth({ user, pwd });
             navigate(from);
           }
