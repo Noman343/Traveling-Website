@@ -5,14 +5,14 @@ import Layout from "./Layout";
 import Trailer from "./components/Trailer";
 import SignLogIn from "./components/pages/SignLogIn";
 import Tourists from "./components/pages/tourists/Tourists";
-import {AuthProvider} from './context/AuthProvider'
+import { AuthProvider } from "./context/AuthProvider";
 import RequireAuth from "./components/RequireAuth";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <AuthProvider >
+        <AuthProvider>
           <Routes>
             <Route path={"/"} exact element={<Layout />}>
               <Route path="/" element={<Home />} />
