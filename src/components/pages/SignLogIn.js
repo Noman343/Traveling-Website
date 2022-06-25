@@ -26,6 +26,7 @@ function SignLogIn() {
     setLoggedInState("logging in");
     if (user === "" || pwd === "") {
       alert("Please enter email and password");
+      setLoggedInState("");
     } else {
       axios
         // .post("https://obscure-ridge-37201.herokuapp.com/https://secret-badlands-53755.herokuapp.com/login", {
@@ -57,6 +58,7 @@ function SignLogIn() {
     setLoggedInState("logging in");
     if (username === "" || email === "" || password === "") {
       alert("Please complete the Fields");
+      setLoggedInState("");
     } else {
       axios
         // .post("https://obscure-ridge-37201.herokuapp.com/https://secret-badlands-53755.herokuapp.com/signup", {
