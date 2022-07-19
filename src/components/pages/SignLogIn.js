@@ -29,8 +29,8 @@ function SignLogIn() {
       setLoggedInState("");
     } else {
       axios
-        // .post("https://obscure-ridge-37201.herokuapp.com/https://secret-badlands-53755.herokuapp.com/login", {
-        .post("http://localhost:5000/login", {
+        .post("https://cryptic-brushlands-00751.herokuapp.com/login", {
+        // .post("http://localhost:5000/login", {
           email: user,
           password: pwd,
         })
@@ -61,8 +61,8 @@ function SignLogIn() {
       setLoggedInState("");
     } else {
       axios
-        // .post("https://obscure-ridge-37201.herokuapp.com/https://secret-badlands-53755.herokuapp.com/signup", {
-        .post("http://localhost:5000/signup", {
+        .post("https://cryptic-brushlands-00751.herokuapp.com/signup", {
+        // .post("http://localhost:5000/signup", {
           name: username,
           email: email,
           password: password,
